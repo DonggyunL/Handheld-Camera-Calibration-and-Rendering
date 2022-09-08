@@ -5,6 +5,7 @@
 int main(){
     printf("start?\n");
     printf("3rd test\n");
+    printf("master modify\n");
     return 0;
 }
 
