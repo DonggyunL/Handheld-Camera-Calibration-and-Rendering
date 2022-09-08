@@ -3,7 +3,7 @@
 
 // initializing
 int main(){
-    printf("start?\n");
+    printf("start??\n");
     return 0;
 }
 
