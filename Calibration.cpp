@@ -1,5 +1,6 @@
 // library import
 #include <stdio.h>
+#include </home/dg/opencv-4.x/include/opencv2/opencv.hpp fail>
 
 
 int main(){
