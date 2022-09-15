@@ -1,18 +1,11 @@
 // library import
 #include <stdio.h>
 
-// initializing
+
 int main(){
-    printf("start?\n");
-    printf("3rd test\n");
-    printf("master modify\n");
-    return 0;
-}
+// initializing
 
-// connect handheld camera
-
-
-// capture vedio frame
+// receive pre-recorded video file for calibraiton
 
 
 // detect checker board
@@ -22,3 +15,6 @@ int main(){
 
 
 // store camera matrix to file and export
+
+return 0;
+}
