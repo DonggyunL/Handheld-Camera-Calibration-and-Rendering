@@ -1,9 +1,17 @@
 // library import
+#include "opencv2/opencv.hpp"
+#include "opencv2/opencv_modules.hpp"
 #include <stdio.h>
-#include </home/dg/opencv-4.x/include/opencv2/opencv.hpp fail>
-
+#include <iostream>
 
 int main(){
+//opencv test
+    cv::VideoCapture cap("Calibration1.mp4");
+
+    if (!cap.isOpened()){
+        printf("Can't open");
+        return -1;
+    }
 // initializing
 
 // receive pre-recorded video file for calibraiton
