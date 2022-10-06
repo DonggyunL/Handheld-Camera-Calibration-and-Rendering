@@ -50,8 +50,8 @@ int main(int argc, char** argv) {
 
 		found = cv::findChessboardCorners(img, cv::Size(CheckerBoard[0], CheckerBoard[1]), corners, cv::CALIB_CB_ADAPTIVE_THRESH | cv::CALIB_CB_FAST_CHECK | cv::CALIB_CB_NORMALIZE_IMAGE);
 		if(found){
-            cornerSubPix(gray_img, corners, Size(11, 11), Size(-1, -1), TermCriteria(cv::TermCriteria::EPS | cv::TermCriteria::MAX_ITER, 30, 0.1));
-            drawChessboardCorners(gray_img, cv::Size(CheckerBoard[0], CheckerBoard[1]), corners, found);
+            		cornerSubPix(gray_img, corners, Size(11, 11), Size(-1, -1), TermCriteria(cv::TermCriteria::EPS | cv::TermCriteria::MAX_ITER, 30, 0.1));
+            		drawChessboardCorners(gray_img, cv::Size(CheckerBoard[0], CheckerBoard[1]), corners, found);
 
 			objpoints.push_back(objp);
 			imgpoints.push_back(corners);
@@ -64,15 +64,15 @@ int main(int argc, char** argv) {
 
 	// camera calibration
 	cv::Mat intrinsic = cv::Mat(3, 3, CV_32FC1);
-    cv::Mat distCoeffs;
-    std::vector<cv::Mat> rvecs;
-    std::vector<cv::Mat> tvecs;
+    	cv::Mat distCoeffs;
+    	std::vector<cv::Mat> rvecs;
+    	std::vector<cv::Mat> tvecs;
 	
 
 	intrinsic.ptr<float>(0)[0] = 1;
-    intrinsic.ptr<float>(1)[1] = 1;
-
-    calibrateCamera(objpoints, imgpoints, gray_img.size(), intrinsic, distCoeffs, rvecs, tvecs);
+    	intrinsic.ptr<float>(1)[1] = 1;
+	
+	calibrateCamera(objpoints, imgpoints, gray_img.size(), intrinsic, distCoeffs, rvecs, tvecs);
 
 	// std::cout << "cameraMatrix : " << intrinsic << std::endl;
 	// std::cout << "distCoeffs : " << distCoeffs << std::endl;
