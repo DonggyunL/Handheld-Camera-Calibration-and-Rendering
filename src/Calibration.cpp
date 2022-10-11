@@ -18,6 +18,7 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 
+	// //  show video
 	// Mat img;
 
 	// while (1)
@@ -61,7 +62,7 @@ int main(int argc, char** argv) {
 	cv::Mat img;
 	cv::Mat gray_img;
 
-	//  convert video file to image, find checkerboard corners from the image and show
+	//  convert video file to image, find checkerboard corners from the image, sample images to be used for calibration, and show
 	while (img_count < img_sample_max){
 		std::vector<cv::Point2f> corners;
 		bool found;
@@ -87,12 +88,12 @@ int main(int argc, char** argv) {
 			img_count++;
 
 			cv::imshow("Image",gray_img);
-			if(waitKey(int(2000/frame_diff)) == 27) break;
+			if(waitKey(int(500)) == 27) break;
 
 			frame_diff = fps;
 			cur_frame_diff = 0;
         }
-		else frame_diff += int(frame_diff/10);
+		else frame_diff += int(fps/10);
 	}
 
 	std::cout << "found " << img_count << " images" << std::endl;
@@ -101,10 +102,7 @@ int main(int argc, char** argv) {
 	cv::Mat intrinsic = cv::Mat(3, 3, CV_32FC1);
 	cv::Mat distCoeffs;
 	cv::Mat rvecs, tvecs;
-	//std::vector<cv::Mat> rvecs;
-	//std::vector<cv::Mat> tvecs;
 	
-
 	intrinsic.ptr<float>(0)[0] = 1;
 	intrinsic.ptr<float>(1)[1] = 1;
 
@@ -112,17 +110,13 @@ int main(int argc, char** argv) {
 
 	std::cout << "cameraMatrix : " << intrinsic << std::endl;
 	std::cout << "distCoeffs : " << distCoeffs << std::endl;
-	std::cout << "Rotation vector : " << rvecs << std::endl;
-	std::cout << "Translation vector : " << tvecs << std::endl;
+	// std::cout << "Rotation vector : " << rvecs << std::endl;
+	// std::cout << "Translation vector : " << tvecs << std::endl;
 
 	// store camera matrix to file and export
-	std::ofstream fout;
-
-	fout.open("camera_matrix.txt");
-
-	fout << "write camera_marix_info" << endl; // need to modify
-
-	fout.close();
+	cv::FileStorage fs("camera_matrix.txt", cv::FileStorage::WRITE);
+	fs << "intrinsic" << intrinsic;
+	fs << "distCoeffs" << distCoeffs;
 
 	return 0;
 }
